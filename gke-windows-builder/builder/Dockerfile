@@ -31,7 +31,7 @@ RUN mkdir -p $NOTICES/github.com/chzyer/logex; wget https://raw.githubuserconten
 # The size of the tarball is about 117 MB.
 RUN tar -c /go/pkg/mod/* /go/src/builder -z -f /gke-windows-builder-source.tar.gz
 
-FROM gcr.io/distroless/base-debian10
+FROM gcr.io/google.com/cloudsdktool/cloud-sdk:slim
 COPY --from=build-env /go/bin/main /bin/main
 COPY --from=build-env /gke-windows-builder-source.tar.gz /
 COPY --from=build-env /THIRD_PARTY_NOTICES/ /THIRD_PARTY_NOTICES/
